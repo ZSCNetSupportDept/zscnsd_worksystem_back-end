@@ -1,6 +1,7 @@
 from django.db import models
 from work_system.models import Personal
 from django.contrib.auth.models import User
+from django.shortcuts import get_object_or_404
 
 # Create your models here.
 
@@ -38,7 +39,8 @@ class HP(models.Model):
     change_time = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.user.username+' HP:'+str(self.value)
+        membername = get_object_or_404(Personal.objects.filter(user=self.user)).name
+        return ' '.join([self.user.username, membername, 'HP:{}'.format(str(self.value))])
 
     def debuff(self, buff_name):
         q = DeBuff.objects.filter(name="%s" % buff_name)
