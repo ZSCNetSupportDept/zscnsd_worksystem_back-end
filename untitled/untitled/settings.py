@@ -24,7 +24,7 @@ SECRET_KEY = 'l3du+#(t4i4p&mkv@0=!lz#sr#ex7mi&k4e&iv6zne)0d^ox@b'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['work.zsxyww.com']
+ALLOWED_HOSTS = ['*']
 
 ADMINS=[
   ('sumeragibi','sumeragibi@gmail.com')
@@ -84,8 +84,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'work',
-        'USER': '',
-        'PASSWORD': '',
+        'USER': 'root',
+        'PASSWORD': 'root',
         'HOST': '127.0.0.1',
         'PORT': '3306',
     }

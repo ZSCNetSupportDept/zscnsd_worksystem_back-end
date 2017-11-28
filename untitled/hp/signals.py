@@ -15,7 +15,7 @@ def createHP(sender, instance, created, **kwargs):
 def increaseHP(sender, instance, created, **kwargs):
     if created:
         q = instance.key
-        q.value += 5
+        q.value += instance.hp_increase
         q.save()
         super(Buff, instance).save()
 
@@ -24,15 +24,7 @@ def increaseHP(sender, instance, created, **kwargs):
 def decreaseHP(sender, instance, created, **kwargs):
     if created:
         q = instance.key
-        if instance.debuff_reason in Summary.DeBuff_Lv1:
-            instance.hp_decrease = 10
-            q.value -= 10
-        elif instance.debuff_reason in Summary.DeBuff_Lv2:
-            instance.hp_decrease = 20
-            q.value -= 20
-        elif instance.debuff_reason in Summary.DeBuff_Lv3:
-            instance.hp_decrease = 30
-            q.value -= 30
+        q.value -= instance.hp_decrease
         q.save()
         super(DeBuff, instance).save()
 

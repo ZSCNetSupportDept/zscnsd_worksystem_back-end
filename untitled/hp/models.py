@@ -47,7 +47,7 @@ class HP(models.Model):
         return q
 
     def buff(self, buff_name):
-        q = DeBuff.objects.filter(name="%s" % buff_name)
+        q = Buff.objects.filter(name="%s" % buff_name)
         return q
 
     #class Meta:
@@ -109,12 +109,7 @@ class DeBuff(models.Model):
 
     def delete(self, *args, **kwargs):
         q = self.key
-        if self.debuff_reason in Summary.DeBuff_Lv1:
-            q.value += 10
-        elif self.debuff_reason in Summary.DeBuff_Lv2:
-            q.value += 20
-        elif self.debuff_reason in Summary.DeBuff_Lv3:
-            q.value += 30
+        q.value += self.hp_decrease
         q.save()
         super(DeBuff, self).delete(*args, **kwargs)
 
@@ -140,7 +135,7 @@ class Buff(models.Model):
 
     def delete(self, *args, **kwargs):
         q = self.key
-        q.value -= 5
+        q.value -= self.hp_increase
         q.save()
         super(Buff, self).delete(*args, **kwargs)
 
