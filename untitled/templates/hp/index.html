@@ -6,23 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap-theme.css" rel="stylesheet">
     <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
-    <script src="https://cdn.bootcss.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
-    <link href="https://cdn.bootcss.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet">
-    <title>hp</title>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <title>血条列表</title>
 </head>
 <body>
     <div class="container" role="main">
         <div class="col-md-12">
+            <ol class="breadcrumb">
+                <li class="active">血条列表</li>
+            </ol>
             <table class="table table-striped">
                 <tbody>
                 {% for hp in hp_list %}
                 <tr>
                     <td>
                         <a href="{{ hp.user.username }}">
-                            {{ hp.user.username }}
-                            {{ hp.user.name }}
-                            HP:{{hp.value}}
-
+                            {{ hp }}
                             <div class="progress">
                                 {% if hp.value >= 75 %}
                                     <div class="progress-bar progress-bar-success" style="width: {{ hp.value }}%"></div>
